@@ -3,7 +3,9 @@
 <li class="breadcrumb-item">
     <a href="{{ path('app_jeu_video_index') }}">Jeux Vidéo</a>
 </li>
-<li class="breadcrumb-item active" aria-current="page">{{ jeu_video.titre }}</li>
+<li class="breadcrumb-item active" aria-current="page">
+    {{ jeu_video.titre }}
+</li>
 {% endblock %} {% block body %}
 <div class="row">
     <div class="col-lg-4 mb-4">
@@ -13,69 +15,90 @@
                 src="{{ jeu_video.imageUrl }}"
                 alt="{{ jeu_video.titre }}"
                 class="card-img-top"
-                style="border-radius: 8px 8px 0 0;"
+                style="border-radius: 8px 8px 0 0"
             />
             {% else %}
             <div
                 class="card-img-top bg-secondary d-flex align-items-center justify-content-center"
-                style="height: 400px; border-radius: 8px 8px 0 0;"
+                style="height: 400px; border-radius: 8px 8px 0 0"
             >
-                <i class="bi bi-controller" style="font-size: 6rem; color: #dee2e6;"></i>
+                <i
+                    class="bi bi-controller"
+                    style="font-size: 6rem; color: #dee2e6"
+                ></i>
             </div>
             {% endif %}
             <div class="card-body text-center">
                 <h2 class="card-title mb-3">{{ jeu_video.titre }}</h2>
                 <div class="mb-3">
-                    <span class="badge bg-success fs-4">{{ jeu_video.prix|number_format(2, ',') }} €</span>
+                    <span class="badge bg-success fs-4"
+                        >{{ jeu_video.prix|number_format(2, ',') }} €</span
+                    >
                 </div>
                 <p class="text-muted mb-2">
                     <i class="bi bi-calendar3 me-1"></i>
-                    {% if jeu_video.dateSortie %}
-                        Sorti le {{ jeu_video.dateSortie|date('d/m/Y') }}
-                    {% else %}
-                        Date inconnue
-                    {% endif %}
+                    {% if jeu_video.dateSortie %} Sorti le
+                    {{ jeu_video.dateSortie|date('d/m/Y') }}
+                    {% else %} Date inconnue {% endif %}
                 </p>
             </div>
         </div>
     </div>
-    
+
     <div class="col-lg-8">
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-primary text-white">
-                <h4 class="mb-0"><i class="bi bi-info-circle me-2"></i>Informations</h4>
+                <h4 class="mb-0">
+                    <i class="bi bi-info-circle me-2"></i>Informations
+                </h4>
             </div>
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <h6 class="text-muted mb-1">Éditeur</h6>
-                        <p class="fs-5"><i class="bi bi-building me-2"></i>{{ jeu_video.editeur.nom }}</p>
+                        <p class="fs-5">
+                            <i class="bi bi-building me-2"></i
+                            >{{ jeu_video.editeur.nom }}
+                        </p>
                     </div>
                     <div class="col-md-6">
                         <h6 class="text-muted mb-1">Genre</h6>
-                        <p class="fs-5"><i class="bi bi-tag me-2"></i>{{ jeu_video.genre.nom }}</p>
+                        <p class="fs-5">
+                            <i class="bi bi-tag me-2"></i
+                            >{{ jeu_video.genre.nom }}
+                        </p>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <h6 class="text-muted mb-1">Développeur</h6>
-                        <p class="fs-5"><i class="bi bi-code-slash me-2"></i>{{ jeu_video.developpeur }}</p>
+                        <p class="fs-5">
+                            <i class="bi bi-code-slash me-2"></i
+                            >{{ jeu_video.developpeur }}
+                        </p>
                     </div>
                     <div class="col-md-6">
                         <h6 class="text-muted mb-1">ID</h6>
-                        <p class="fs-5"><i class="bi bi-hash me-2"></i>{{ jeu_video.id }}</p>
+                        <p class="fs-5">
+                            <i class="bi bi-hash me-2"></i>{{ jeu_video.id }}
+                        </p>
                     </div>
                 </div>
-                <hr/>
+                <hr />
                 <div>
                     <h6 class="text-muted mb-2">Description</h6>
-                    <p class="fs-5" style="text-align: justify;">{{ jeu_video.description }}</p>
+                    <p class="fs-5" style="text-align: justify">
+                        {{ jeu_video.description }}
+                    </p>
                 </div>
             </div>
         </div>
-        
+
         <div class="d-flex gap-2 flex-wrap">
-            <a href="{{ path('app_jeu_video_index') }}" class="btn btn-secondary btn-lg">
+            <a
+                href="{{ path('app_jeu_video_index') }}"
+                class="btn btn-secondary btn-lg"
+            >
                 <i class="bi bi-arrow-left me-2"></i>Retour à la liste
             </a>
             <a
