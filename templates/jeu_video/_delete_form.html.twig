@@ -1,4 +1,15 @@
-<form method="post" action="{{ path('app_jeu_video_delete', {'id': jeu_video.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');" class="d-inline">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ jeu_video.id) }}">
-    <button class="btn btn-danger">Supprimer</button>
+<form
+    method="post"
+    action="{{ path('app_jeu_video_delete', { id: jeu_video.id }) }}"
+    onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');"
+    class="d-inline"
+>
+    <input
+        type="hidden"
+        name="_token"
+        value="{{ csrf_token('delete' ~ jeu_video.id) }}"
+    />
+    <button type="submit" class="btn btn-danger btn-lg">
+        <i class="bi bi-trash"></i> Supprimer
+    </button>
 </form>

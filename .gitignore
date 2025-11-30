@@ -8,4 +8,6 @@
 /var/
 /vendor/
 /docker/
+/public/uploads/*
+!/public/uploads/.gitkeep
 ###< symfony/framework-bundle ###
