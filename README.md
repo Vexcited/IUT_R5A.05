@@ -29,4 +29,4 @@ Le code réalisé dans ce TP est un aparté de celui que nous devons présenter 
 -   [x] Création et configuration du schéma de base de données
 -   [x] Création des entités, des relations et des repositories
 -   [x] Création de migrations
--   [ ] Insetion de données avec des fixtures
+-   [x] Insetion de données avec des fixtures
