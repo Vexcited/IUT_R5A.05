@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editeur index{% endblock %}
+{% block title %}Liste des éditeurs{% endblock %}
 
 {% block body %}
-    <h1>Editeur index</h1>
+    <h1>Liste des éditeurs</h1>
 
     <table class="table">
         <thead>
@@ -13,9 +13,9 @@
                 <th>Pays</th>
                 <th>SiteWeb</th>
                 <th>Description</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Créé le</th>
+                <th>Modifié le</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +29,17 @@
                 <td>{{ editeur.createdAt ? editeur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ editeur.updatedAt ? editeur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_editeur_show', {'id': editeur.id}) }}">show</a>
-                    <a href="{{ path('app_editeur_edit', {'id': editeur.id}) }}">edit</a>
+                    <a href="{{ path('app_editeur_show', {'id': editeur.id}) }}">Consulter</a>
+                    <a href="{{ path('app_editeur_edit', {'id': editeur.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_editeur_new') }}">Create new</a>
+    <a href="{{ path('app_editeur_new') }}">Créer un nouvel éditeur</a>
 {% endblock %}

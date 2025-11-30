@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Genre{% endblock %}
+{% block title %}Détails du genre{% endblock %}
 
 {% block body %}
-    <h1>Genre</h1>
+    <h1>Détails du genre</h1>
 
     <table class="table">
         <tbody>
@@ -21,22 +21,22 @@
             </tr>
             <tr>
                 <th>Actif</th>
-                <td>{{ genre.actif ? 'Yes' : 'No' }}</td>
+                <td>{{ genre.actif ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créé le</th>
                 <td>{{ genre.createdAt ? genre.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Modifié le</th>
                 <td>{{ genre.updatedAt ? genre.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_genre_index') }}">back to list</a>
+    <a href="{{ path('app_genre_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_genre_edit', {'id': genre.id}) }}">edit</a>
+    <a href="{{ path('app_genre_edit', {'id': genre.id}) }}">Modifier</a>
 
     {{ include('genre/_delete_form.html.twig') }}
 {% endblock %}

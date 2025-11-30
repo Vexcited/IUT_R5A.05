@@ -34,4 +34,4 @@ Le code réalisé dans ce TP est un aparté de celui que nous devons présenter 
 ## TP 4 [OK]
 
 -   [x] Mise en place d'un CRUD
--   [ ] Ajout de tests pour les contrôleurs
+-   [x] Amélioration des templates `twig` par défaut
