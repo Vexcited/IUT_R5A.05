@@ -35,3 +35,7 @@ Le code réalisé dans ce TP est un aparté de celui que nous devons présenter 
 
 -   [x] Mise en place d'un CRUD
 -   [x] Amélioration des templates `twig` par défaut
+
+## TP 5 [OK]
+
+-   [x] Design
