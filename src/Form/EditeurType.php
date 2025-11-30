@@ -12,10 +12,22 @@ class EditeurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('pays')
-            ->add('siteWeb')
-            ->add('description')
+            ->add('nom', null, [
+                'label' => 'Nom',
+                'required' => true,
+            ])
+            ->add('pays', null, [
+                'label' => 'Pays',
+                'required' => false,
+            ])
+            ->add('siteWeb', null, [
+                'label' => 'Site Web',
+                'required' => false,
+            ])
+            ->add('description', null, [
+                'label' => 'Description',
+                'required' => false,
+            ])
         ;
     }
 

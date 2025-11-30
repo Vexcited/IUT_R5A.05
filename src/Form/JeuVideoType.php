@@ -18,14 +18,27 @@ class JeuVideoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre')
-            ->add('developpeur')
-            ->add('dateSortie')
+            ->add('titre', null, [
+                'label' => 'Titre',
+                'required' => true,
+            ])
+            ->add('developpeur', null, [
+                'label' => 'Développeur',
+                'required' => true,
+            ])
+            ->add('dateSortie', null, [
+                'label' => 'Date de sortie',
+                'required' => false,
+            ])
             ->add('prix', MoneyType::class, [
                 'currency' => 'EUR',
                 'label' => 'Prix',
+                'required' => false,
             ])
-            ->add('description')
+            ->add('description', null, [
+                'label' => 'Description',
+                'required' => false,
+            ])
             ->add('image', FileType::class, [
                 'label' => 'Image',
                 'mapped' => false,
@@ -47,10 +60,14 @@ class JeuVideoType extends AbstractType
             ->add('editeur', EntityType::class, [
                 'class' => Editeur::class,
                 'choice_label' => 'nom',
+                'label' => 'Éditeur',
+                'required' => true,
             ])
             ->add('genre', EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => 'nom',
+                'label' => 'Genre',
+                'required' => true,
             ])
         ;
     }
