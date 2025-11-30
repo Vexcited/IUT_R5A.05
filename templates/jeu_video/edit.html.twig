@@ -1,13 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Modifier le jeu vidéo{% endblock
+%} {% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="{{ path('app_jeu_video_index') }}">Jeux Vidéo</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">Modifier</li>
+{% endblock %} {% block body %}
+<h1 class="mb-4">Modifier le jeu vidéo</h1>
 
-{% block title %}Modifier le jeu vidéo{% endblock %}
+<div class="card">
+    <div class="card-body">
+        {{
+            include("jeu_video/_form.html.twig", {
+                button_label: "Mettre à jour"
+            })
+        }}
+    </div>
+</div>
 
-{% block body %}
-    <h1>Modifier le jeu vidéo</h1>
-
-    {{ include('jeu_video/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
-    <a href="{{ path('app_jeu_video_index') }}">Retour à la liste</a>
-
-    {{ include('jeu_video/_delete_form.html.twig') }}
+<div class="mt-3">
+    <a href="{{ path('app_jeu_video_index') }}" class="btn btn-secondary"
+        >Retour à la liste</a
+    >
+    {{ include("jeu_video/_delete_form.html.twig") }}
+</div>
 {% endblock %}

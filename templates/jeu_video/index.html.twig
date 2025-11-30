@@ -1,47 +1,68 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Liste des jeux vidéo{% endblock %}
-
-{% block body %}
+{% extends 'base.html.twig' %} {% block title %}Liste des jeux vidéo{% endblock
+%} {% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">Jeux Vidéo</li>
+{% endblock %} {% block body %}
+<div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Liste des jeux vidéo</h1>
+    <a href="{{ path('app_jeu_video_new') }}" class="btn btn-primary"
+        >Ajouter un jeu</a
+    >
+</div>
 
-    <table class="table">
-        <thead>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
             <tr>
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Éditeur</th>
-                <th>Developpeur</th>
-                <th>DateSortie</th>
+                <th>Développeur</th>
+                <th>Date de sortie</th>
                 <th>Prix</th>
-                <th>Description</th>
-                <th>ImageUrl</th>
+                <th class="d-none d-lg-table-cell">Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for jeu_video in jeu_videos %}
+            {% for jeu_video in jeu_videos %}
             <tr>
                 <td>{{ jeu_video.id }}</td>
                 <td>{{ jeu_video.titre }}</td>
                 <td>{{ jeu_video.editeur.nom }}</td>
                 <td>{{ jeu_video.developpeur }}</td>
-                <td>{{ jeu_video.dateSortie ? jeu_video.dateSortie|date('Y-m-d') : '' }}</td>
-                <td>{{ jeu_video.prix|number_format(2, ',') }} €</td>
-                <td>{{ jeu_video.description }}</td>
-                <td>{{ jeu_video.imageUrl }}</td>
                 <td>
-                    <a href="{{ path('app_jeu_video_show', {'id': jeu_video.id}) }}">Consulter</a>
-                    <a href="{{ path('app_jeu_video_edit', {'id': jeu_video.id}) }}">Modifier</a>
+                    {{ jeu_video.dateSortie ? jeu_video.dateSortie|date('d/m/Y') : '' }}
+                </td>
+                <td>{{ jeu_video.prix|number_format(2, ',') }} €</td>
+                <td class="d-none d-lg-table-cell">
+                    {{ jeu_video.description|slice(0, 50) }}{% if
+                    jeu_video.description|length > 50 %}...{% endif %}
+                </td>
+                <td>
+                    <a
+                        href="{{
+                            path('app_jeu_video_show', { id: jeu_video.id })
+                        }}"
+                        class="btn btn-sm btn-info"
+                        >Voir</a
+                    >
+                    <a
+                        href="{{
+                            path('app_jeu_video_edit', { id: jeu_video.id })
+                        }}"
+                        class="btn btn-sm btn-warning"
+                        >Modifier</a
+                    >
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
-                <td colspan="8">Aucun enregistrement trouvé</td>
+                <td colspan="8" class="text-center">
+                    Aucun enregistrement trouvé
+                </td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_jeu_video_new') }}">Ajouter un jeu</a>
+</div>
 {% endblock %}

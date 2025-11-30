@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Nouveau genre{% endblock %} {%
+block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="{{ path('app_genre_index') }}">Genres</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">Nouveau</li>
+{% endblock %} {% block body %}
+<h1>Créer un nouveau genre</h1>
 
-{% block title %}Nouveau genre{% endblock %}
+{{ include("genre/_form.html.twig") }}
 
-{% block body %}
-    <h1>Créer un nouveau genre</h1>
-
-    {{ include('genre/_form.html.twig') }}
-
-    <a href="{{ path('app_genre_index') }}">Retour à la liste</a>
+<a href="{{ path('app_genre_index') }}">Retour à la liste</a>
 {% endblock %}

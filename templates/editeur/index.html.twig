@@ -1,45 +1,73 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Liste des éditeurs{% endblock %}
-
-{% block body %}
+{% extends 'base.html.twig' %} {% block title %}Liste des éditeurs{% endblock %}
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">Éditeurs</li>
+{% endblock %} {% block body %}
+<div class="d-flex justify-content-between align-items-center mb-4">
     <h1>Liste des éditeurs</h1>
+    <a href="{{ path('app_editeur_new') }}" class="btn btn-primary"
+        >Créer un nouvel éditeur</a
+    >
+</div>
 
-    <table class="table">
-        <thead>
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
                 <th>Pays</th>
-                <th>SiteWeb</th>
-                <th>Description</th>
-                <th>Créé le</th>
-                <th>Modifié le</th>
+                <th class="d-none d-md-table-cell">Site Web</th>
+                <th class="d-none d-lg-table-cell">Description</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for editeur in editeurs %}
+            {% for editeur in editeurs %}
             <tr>
                 <td>{{ editeur.id }}</td>
-                <td>{{ editeur.nom }}</td>
-                <td>{{ editeur.pays }}</td>
-                <td>{{ editeur.siteWeb }}</td>
-                <td>{{ editeur.description }}</td>
-                <td>{{ editeur.createdAt ? editeur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ editeur.updatedAt ? editeur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_editeur_show', {'id': editeur.id}) }}">Consulter</a>
-                    <a href="{{ path('app_editeur_edit', {'id': editeur.id}) }}">Modifier</a>
+                    <strong>{{ editeur.nom }}</strong>
+                </td>
+                <td>{{ editeur.pays }}</td>
+                <td class="d-none d-md-table-cell">
+                    {% if editeur.siteWeb %}
+                    <a
+                        href="{{ editeur.siteWeb }}"
+                        target="_blank"
+                        class="btn btn-sm btn-link"
+                        >Visiter</a
+                    >
+                    {% endif %}
+                </td>
+                <td class="d-none d-lg-table-cell">
+                    {{ editeur.description|slice(0, 50) }}{% if
+                    editeur.description|length > 50 %}...{% endif %}
+                </td>
+                <td>
+                    <a
+                        href="{{
+                            path('app_editeur_show', { id: editeur.id })
+                        }}"
+                        class="btn btn-sm btn-info"
+                        >Voir</a
+                    >
+                    <a
+                        href="{{
+                            path('app_editeur_edit', { id: editeur.id })
+                        }}"
+                        class="btn btn-sm btn-warning"
+                        >Modifier</a
+                    >
                 </td>
             </tr>
-        {% else %}
+            {% else %}
             <tr>
-                <td colspan="8">Aucun enregistrement trouvé</td>
+                <td colspan="6" class="text-center">
+                    Aucun enregistrement trouvé
+                </td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_editeur_new') }}">Créer un nouvel éditeur</a>
+</div>
 {% endblock %}

@@ -1,16 +1,175 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}Bienvenue !{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
-
-        {% block javascripts %}
-        {% endblock %}
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        />
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .sidebar {
+                min-height: calc(100vh - 56px - 60px);
+                background-color: #f8f9fa;
+                border-right: 1px solid #dee2e6;
+            }
+            .sidebar .nav-link {
+                color: #495057;
+                padding: 0.75rem 1rem;
+                border-radius: 0.25rem;
+                margin-bottom: 0.25rem;
+            }
+            .sidebar .nav-link:hover {
+                background-color: #e9ecef;
+                color: #0d6efd;
+            }
+            .sidebar .nav-link.active {
+                background-color: #0d6efd;
+                color: white;
+            }
+            .main-content {
+                flex: 1;
+            }
+            footer {
+                margin-top: auto;
+                background-color: #f8f9fa;
+                border-top: 1px solid #dee2e6;
+                padding: 1.5rem 0;
+            }
+        </style>
+        {% block stylesheets %} {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {# Header #}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a
+                    class="navbar-brand"
+                    href="{{ path('app_jeu_video_index') }}"
+                >
+                    <i class="bi bi-controller"></i> Gestion Jeux Vidéo
+                </a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <span class="navbar-text text-white">
+                                <i class="bi bi-person-circle"></i>
+                                Administrateur
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row">
+                {# Left Sidebar Menu #}
+                <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+                    <div class="position-sticky pt-3">
+                        <h6
+                            class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+                        >
+                            <span>Navigation</span>
+                        </h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ path('app_jeu_video_index') }}"
+                                >
+                                    <i class="bi bi-joystick"></i> Jeux Vidéo
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ path('app_genre_index') }}"
+                                >
+                                    <i class="bi bi-tag"></i> Genres
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{{ path('app_editeur_index') }}"
+                                >
+                                    <i class="bi bi-building"></i> Éditeurs
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
+                {# Main Content Area #}
+                <main
+                    class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content"
+                >
+                    {# Breadcrumb #}
+                    <div
+                        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+                    >
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">
+                                    <a href="{{ path('app_jeu_video_index') }}"
+                                        >Accueil</a
+                                    >
+                                </li>
+                                {% block breadcrumb %}{% endblock %}
+                            </ol>
+                        </nav>
+                    </div>
+
+                    {# Page Content #} {% block body %}{% endblock %}
+                </main>
+            </div>
+        </div>
+
+        {# Footer #}
+        <footer class="text-center text-muted">
+            <div class="container">
+                <p class="mb-0">
+                    &copy; 2025 Gestion Jeux Vidéo - Tous droits réservés
+                </p>
+                <p class="mb-0">
+                    <small>Développé avec Symfony et Bootstrap</small>
+                </p>
+            </div>
+        </footer>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"
+        ></script>
+        {% block javascripts %} {% endblock %}
     </body>
 </html>

@@ -1,46 +1,52 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Détails de l'éditeur{% endblock
+%} {% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="{{ path('app_editeur_index') }}">Éditeurs</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">Détails</li>
+{% endblock %} {% block body %}
+<h1>Détails de l'éditeur</h1>
 
-{% block title %}Détails de l'éditeur{% endblock %}
+<table class="table">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ editeur.id }}</td>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <td>{{ editeur.nom }}</td>
+        </tr>
+        <tr>
+            <th>Pays</th>
+            <td>{{ editeur.pays }}</td>
+        </tr>
+        <tr>
+            <th>SiteWeb</th>
+            <td>{{ editeur.siteWeb }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ editeur.description }}</td>
+        </tr>
+        <tr>
+            <th>Créé le</th>
+            <td>
+                {{ editeur.createdAt ? editeur.createdAt|date('Y-m-d H:i:s') : '' }}
+            </td>
+        </tr>
+        <tr>
+            <th>Modifié le</th>
+            <td>
+                {{ editeur.updatedAt ? editeur.updatedAt|date('Y-m-d H:i:s') : '' }}
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-{% block body %}
-    <h1>Détails de l'éditeur</h1>
+<a href="{{ path('app_editeur_index') }}">Retour à la liste</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ editeur.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ editeur.nom }}</td>
-            </tr>
-            <tr>
-                <th>Pays</th>
-                <td>{{ editeur.pays }}</td>
-            </tr>
-            <tr>
-                <th>SiteWeb</th>
-                <td>{{ editeur.siteWeb }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ editeur.description }}</td>
-            </tr>
-            <tr>
-                <th>Créé le</th>
-                <td>{{ editeur.createdAt ? editeur.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Modifié le</th>
-                <td>{{ editeur.updatedAt ? editeur.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+<a href="{{ path('app_editeur_edit', { id: editeur.id }) }}">Modifier</a>
 
-    <a href="{{ path('app_editeur_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_editeur_edit', {'id': editeur.id}) }}">Modifier</a>
-
-    {{ include('editeur/_delete_form.html.twig') }}
+{{ include("editeur/_delete_form.html.twig") }}
 {% endblock %}

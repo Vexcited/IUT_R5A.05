@@ -1,46 +1,68 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} {% block title %}Détails du jeu vidéo{% endblock
+%} {% block breadcrumb %}
+<li class="breadcrumb-item">
+    <a href="{{ path('app_jeu_video_index') }}">Jeux Vidéo</a>
+</li>
+<li class="breadcrumb-item active" aria-current="page">Détails</li>
+{% endblock %} {% block body %}
+<h1 class="mb-4">Détails du jeu vidéo</h1>
 
-{% block title %}Détails du jeu vidéo{% endblock %}
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th class="w-25">Id</th>
+                    <td>{{ jeu_video.id }}</td>
+                </tr>
+                <tr>
+                    <th>Titre</th>
+                    <td>{{ jeu_video.titre }}</td>
+                </tr>
+                <tr>
+                    <th>Éditeur</th>
+                    <td>{{ jeu_video.editeur.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Genre</th>
+                    <td>{{ jeu_video.genre.nom }}</td>
+                </tr>
+                <tr>
+                    <th>Développeur</th>
+                    <td>{{ jeu_video.developpeur }}</td>
+                </tr>
+                <tr>
+                    <th>Date de sortie</th>
+                    <td>
+                        {{ jeu_video.dateSortie ? jeu_video.dateSortie|date('d/m/Y') : '' }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Prix</th>
+                    <td>{{ jeu_video.prix|number_format(2, ',') }} €</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ jeu_video.description }}</td>
+                </tr>
+                <tr>
+                    <th>Image URL</th>
+                    <td>{{ jeu_video.imageUrl }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
-{% block body %}
-    <h1>Détails du jeu vidéo</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ jeu_video.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ jeu_video.titre }}</td>
-            </tr>
-            <tr>
-                <th>Developpeur</th>
-                <td>{{ jeu_video.developpeur }}</td>
-            </tr>
-            <tr>
-                <th>DateSortie</th>
-                <td>{{ jeu_video.dateSortie ? jeu_video.dateSortie|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Prix</th>
-                <td>{{ jeu_video.prix }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ jeu_video.description }}</td>
-            </tr>
-            <tr>
-                <th>ImageUrl</th>
-                <td>{{ jeu_video.imageUrl }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_jeu_video_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('app_jeu_video_edit', {'id': jeu_video.id}) }}">Modifier</a>
-
-    {{ include('jeu_video/_delete_form.html.twig') }}
+<div class="mt-3">
+    <a href="{{ path('app_jeu_video_index') }}" class="btn btn-secondary"
+        >Retour à la liste</a
+    >
+    <a
+        href="{{ path('app_jeu_video_edit', { id: jeu_video.id }) }}"
+        class="btn btn-warning"
+        >Modifier</a
+    >
+    {{ include("jeu_video/_delete_form.html.twig") }}
+</div>
 {% endblock %}
